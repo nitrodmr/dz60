@@ -23,6 +23,18 @@ void cake_count(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
+void close_main_window(qk_tap_dance_state_t *state, void *user_data) {
+	//Triple tap ESC for alt+F4
+    if (state->count == 3) {
+	send_string(SS_LALT(X_F4));
+    } else {
+	send_string(X_ESC);
+        reset_tap_dance(state);
+    }
+}
+//Triple tap ctrl for ctrl+alt+del
+
+
 // Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
     // tap for Layer 0, tap twice to switch to symbol layer, and tap three times to mouse layer
