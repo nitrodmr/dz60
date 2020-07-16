@@ -41,16 +41,21 @@ void cake_count(qk_tap_dance_state_t *state, void *user_data) {
         if (layer_state_is(PANZER)) {
             // If already set, then switch it off
             layer_off(PANZER);
+	    layer_off(NAV);
+            rgblight_enable();
+            rgblight_mode(RGBLIGHT_MODE_TWINKLE + 4);
             reset_tap_dance(state);
         } else if (layer_state_is(NAV)) {
             layer_off(PANZER);  // define single tap or hold here
             layer_off(NAV);
             rgblight_enable();
             rgblight_mode(RGBLIGHT_MODE_TWINKLE + 4);
-            reset_tap_dance(state);
         } else {
             // If not already set, then switch the layer on
             layer_on(PANZER);
+	    layer_off(NAV);
+            rgblight_enable();
+	    rgblight_mode(RGBLIGHT_MODE_KNIGHT);
         }
 
     } else if (state->count == 2) {
@@ -59,7 +64,7 @@ void cake_count(qk_tap_dance_state_t *state, void *user_data) {
         layer_off(PANZER);
         rgblight_enable();
         rgblight_mode(RGBLIGHT_MODE_ALTERNATING);
-    } else if (state->count == 3) {
+    } else if (state->count == 10) {
         // Number Pad
         layer_on(PANZER);  // define triple tap here
         layer_off(NAV);
